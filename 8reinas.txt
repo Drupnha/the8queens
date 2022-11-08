@@ -1,0 +1,847 @@
+@echo off
+
+set/a logs=1                                                                                
+set/a auto=0
+
+:Lobby
+title El problema de las 8 reinas                                                                                                                                                                                                             by Eloy Bermejo Castro
+color 0f
+mode 138,23
+set/a intentos=0
+
+::
+:: Empezado el 16/4/2021
+:: Horas dedicadas: 8h
+::
+
+
+cls
+echo.    
+echo.
+echo.                                                                                                                          
+echo.                                                                                                                                
+echo            888888888               RRRRRRRRRRRRRRRRR                        iiii                                                    
+echo          88:::::::::88             R::::::::::::::::R                      i::::i                                                    
+echo        88:::::::::::::88           R::::::RRRRRR:::::R                      iiii                                                    
+echo       8::::::88888::::::8          RR:::::R     R:::::R                                                                              
+echo       8:::::8     8:::::8            R::::R     R:::::R    eeeeeeeeeeee   iiiiiiinnnn  nnnnnnnn      aaaaaaaaaaaaa      ssssssssss  
+echo       8:::::8     8:::::8            R::::R     R:::::R  ee::::::::::::ee i:::::in:::nn::::::::nn    a::::::::::::a   ss::::::::::s  
+echo        8:::::88888:::::8             R::::RRRRRR:::::R  e::::::eeeee:::::eei::::in::::::::::::::nn   aaaaaaaaa:::::ass:::::::::::::s
+echo         8:::::::::::::8              R:::::::::::::RR  e::::::e     e:::::ei::::inn:::::::::::::::n           a::::as::::::ssss:::::s
+echo        8:::::88888:::::8             R::::RRRRRR:::::R e:::::::eeeee::::::ei::::i  n:::::nnnn:::::n    aaaaaaa:::::a s:::::s  ssssss
+echo       8:::::8     8:::::8            R::::R     R:::::Re:::::::::::::::::e i::::i  n::::n    n::::n  aa::::::::::::a   s::::::s      
+echo       8:::::8     8:::::8            R::::R     R:::::Re::::::eeeeeeeeeee  i::::i  n::::n    n::::n a::::aaaa::::::a      s::::::s  
+echo       8:::::8     8:::::8            R::::R     R:::::Re:::::::e           i::::i  n::::n    n::::na::::a    a:::::assssss   s:::::s
+echo       8::::::88888::::::8          RR:::::R     R:::::Re::::::::e         i::::::i n::::n    n::::na::::a    a:::::as:::::ssss::::::s
+echo        88:::::::::::::88           R::::::R     R:::::R e::::::::eeeeeeee i::::::i n::::n    n::::na:::::aaaa::::::as::::::::::::::s
+echo          88:::::::::88             R::::::R     R:::::R  ee:::::::::::::e i::::::i n::::n    n::::n a::::::::::aa:::as:::::::::::ss  
+echo            888888888               RRRRRRRR     RRRRRRR    eeeeeeeeeeeeee iiiiiiii nnnnnn    nnnnnn  aaaaaaaaaa  aaaa sssssssssss  
+echo.
+echo.
+echo.
+pause
+
+:info
+cls
+mode 138,23
+echo.
+echo.
+echo  ______             ___                                                                  __                                              
+echo /\__  _\          /'___\                                          __                    /\ \                       __                    
+echo \/_/\ \/     ___ /\ \__/  ___   _ __    ___ ___      __      ___ /\_\    ___     ___    \ \ \____     __      ____/\_\    ___     __    
+echo    \ \ \   /' _ `\ \ ,__\/ __`\/\`'__\/' __` __`\  /'__`\   /'___\/\ \  / __`\ /' _ `\   \ \ '__`\  /'__`\   /',__\/\ \  /'___\ /'__`\  
+echo     \_\ \__/\ \/\ \ \ \_/\ \L\ \ \ \/ /\ \/\ \/\ \/\ \L\.\_/\ \__/\ \ \/\ \L\ \/\ \/\ \   \ \ \L\ \/\ \L\.\_/\__, `\ \ \/\ \__//\ \L\.\_
+echo     /\_____\ \_\ \_\ \_\\ \____/\ \_\ \ \_\ \_\ \_\ \__/.\_\ \____\\ \_\ \____/\ \_\ \_\   \ \_,__/\ \__/.\_\/\____/\ \_\ \____\ \__/.\_\
+echo     \/_____/\/_/\/_/\/_/ \/___/  \/_/  \/_/\/_/\/_/\/__/\/_/\/____/ \/_/\/___/  \/_/\/_/    \/___/  \/__/\/_/\/___/  \/_/\/____/\/__/\/_/
+echo.
+echo.
+echo.
+echo -----------------------------------------------------------------------------------------------------------------------------------------
+echo.
+echo.
+echo El problema de las ocho reinas es un pasatiempo que consiste en poner ocho reinas en el tablero de ajedrez sin que se amenacen.
+echo Fue propuesto por el ajedrecista aleman Max Bezzel en 1848. En el juego del ajedrez la reina amenaza a aquellas piezas que se encuentren
+echo en su misma fila, columna o diagonal. Este script trata de encontrar la respuesta a las 12 soluciones unicas que hay.
+echo.
+echo.
+echo -----------------------------------------------------------------------------------------------------------------------------------------
+echo.
+echo.
+echo.
+pause
+
+:Bucle
+mode 50,29
+set/a comp=0
+set/a intentos=%intentos%+1
+color 8
+set/a bucle=0
+set/a espera1=0
+set/a espera2=0
+set/a espera3=0
+set/a espera4=0
+set/a espera5=0
+set/a espera6=0
+set/a espera7=0
+set/a espera8=0
+
+:Reinas
+set/a de11=%random% %%8
+set/a iz11=%random% %%8
+set/a de1=%de11%+1
+set/a iz1=%iz11%+1
+
+set/a de22=%random% %%8
+set/a iz22=%random% %%8
+set/a de2=%de22%+1
+set/a iz2=%iz22%+1
+
+set/a de33=%random% %%8
+set/a iz33=%random% %%8
+set/a de3=%de33%+1
+set/a iz3=%iz33%+1
+
+set/a de44=%random% %%8
+set/a iz44=%random% %%8
+set/a de4=%de44%+1
+set/a iz4=%iz44%+1
+
+set/a de55=%random% %%8
+set/a iz55=%random% %%8
+set/a de5=%de55%+1
+set/a iz5=%iz55%+1
+
+set/a de66=%random% %%8
+set/a iz66=%random% %%8
+set/a de6=%de66%+1
+set/a iz6=%iz66%+1
+
+set/a de77=%random% %%8
+set/a iz77=%random% %%8
+set/a de7=%de77%+1
+set/a iz7=%iz77%+1
+
+set/a de88=%random% %%8
+set/a iz88=%random% %%8
+set/a de8=%de88%+1
+set/a iz8=%iz88%+1
+
+set/a bucle=%bucle%+1
+if %bucle% == 1 (set/a reina1=%iz1%%de1%)
+if %bucle% == 2 (set/a reina2=%iz2%%de2%)
+if %bucle% == 3 (set/a reina3=%iz3%%de3%)
+if %bucle% == 4 (set/a reina4=%iz4%%de4%)
+if %bucle% == 5 (set/a reina5=%iz5%%de5%)
+if %bucle% == 6 (set/a reina6=%iz6%%de6%)
+if %bucle% == 7 (set/a reina7=%iz7%%de7%)
+if %bucle% == 8 (set/a reina8=%iz8%%de8%)
+if %bucle% GEQ 9 (goto :col1)
+if %bucle% LEQ 8 (goto :Reinas)
+
+:iz1
+set/a espera1=%espera1%+1
+set/a e1=%espera1%+1
+set/a de11=%random% %%8
+set/a iz11=%random% %%8
+set/a de1=%de11%+1
+set/a iz1=%iz11%+1
+
+if %e1% GEQ 100 (goto :Bucle)
+
+:col1
+echo Cargando iz1 y de1..........(intento: %intentos%)
+if %iz1% == %iz2% (goto :iz1)
+if %iz1% == %iz3% (goto :iz1)
+if %iz1% == %iz4% (goto :iz1)
+if %iz1% == %iz5% (goto :iz1)
+if %iz1% == %iz6% (goto :iz1)
+if %iz1% == %iz7% (goto :iz1)
+if %iz1% == %iz8% (goto :iz1)
+
+if %de1% == %de2% (goto :iz1)
+if %de1% == %de3% (goto :iz1)
+if %de1% == %de4% (goto :iz1)
+if %de1% == %de5% (goto :iz1)
+if %de1% == %de6% (goto :iz1)
+if %de1% == %de7% (goto :iz1)
+if %de1% == %de8% (goto :iz1)
+goto :col2
+
+:iz2
+set/a espera2=%espera2%+1
+set/a e2=%espera2%+1
+set/a de22=%random% %%8
+set/a iz22=%random% %%8
+set/a de2=%de22%+1
+set/a iz2=%iz22%+1
+
+if %e2% GEQ 100 (goto :Bucle)
+
+:col2
+echo Cargando iz2 y de2..........(intento: %intentos%)
+if %iz2% == %iz1% (goto :iz2)
+if %iz2% == %iz3% (goto :iz2)
+if %iz2% == %iz4% (goto :iz2)
+if %iz2% == %iz5% (goto :iz2)
+if %iz2% == %iz6% (goto :iz2)
+if %iz2% == %iz7% (goto :iz2)
+if %iz2% == %iz8% (goto :iz2)
+
+if %de2% == %de1% (goto :iz2)
+if %de2% == %de3% (goto :iz2)
+if %de2% == %de4% (goto :iz2)
+if %de2% == %de5% (goto :iz2)
+if %de2% == %de6% (goto :iz2)
+if %de2% == %de7% (goto :iz2)
+if %de2% == %de8% (goto :iz2)
+goto :col3
+
+:iz3
+set/a espera3=%espera3%+1
+set/a e3=%espera3%+1
+set/a de33=%random% %%8
+set/a iz33=%random% %%8
+set/a de3=%de33%+1
+set/a iz3=%iz33%+1
+
+if %e3% GEQ 100 (goto :Bucle)
+
+:col3
+echo Cargando iz3 y de3..........(intento: %intentos%)
+if %iz3% == %iz1% (goto :iz3)
+if %iz3% == %iz2% (goto :iz3)
+if %iz3% == %iz4% (goto :iz3)
+if %iz3% == %iz5% (goto :iz3)
+if %iz3% == %iz6% (goto :iz3)
+if %iz3% == %iz7% (goto :iz3)
+if %iz3% == %iz8% (goto :iz3)
+
+if %de3% == %de1% (goto :iz3)
+if %de3% == %de2% (goto :iz3)
+if %de3% == %de4% (goto :iz3)
+if %de3% == %de5% (goto :iz3)
+if %de3% == %de6% (goto :iz3)
+if %de3% == %de7% (goto :iz3)
+if %de3% == %de8% (goto :iz3)
+goto :col4
+
+:iz4
+set/a espera4=%espera4%+1
+set/a e4=%espera4%+1
+set/a de44=%random% %%8
+set/a iz44=%random% %%8
+set/a de4=%de44%+1
+set/a iz4=%iz44%+1
+
+if %e4% GEQ 100 (goto :Bucle)
+
+:col4
+echo Cargando iz4 y de4..........(intento: %intentos%)
+if %iz4% == %iz1% (goto :iz4)
+if %iz4% == %iz2% (goto :iz4)
+if %iz4% == %iz3% (goto :iz4)
+if %iz4% == %iz5% (goto :iz4)
+if %iz4% == %iz6% (goto :iz4)
+if %iz4% == %iz7% (goto :iz4)
+if %iz4% == %iz8% (goto :iz4)
+
+if %de4% == %de1% (goto :iz4)
+if %de4% == %de2% (goto :iz4)
+if %de4% == %de3% (goto :iz4)
+if %de4% == %de5% (goto :iz4)
+if %de4% == %de6% (goto :iz4)
+if %de4% == %de7% (goto :iz4)
+if %de4% == %de8% (goto :iz4)
+goto :col5
+
+:iz5
+set/a espera5=%espera5%+1
+set/a e5=%espera5%+1
+set/a de55=%random% %%8
+set/a iz55=%random% %%8
+set/a de5=%de55%+1
+set/a iz5=%iz55%+1
+
+if %e5% GEQ 100 (goto :Bucle)
+
+:col5
+echo Cargando iz5 y de5..........(intento: %intentos%)
+if %iz5% == %iz1% (goto :iz5)
+if %iz5% == %iz2% (goto :iz5)
+if %iz5% == %iz3% (goto :iz5)
+if %iz5% == %iz4% (goto :iz5)
+if %iz5% == %iz6% (goto :iz5)
+if %iz5% == %iz7% (goto :iz5)
+if %iz5% == %iz8% (goto :iz5)
+
+if %de5% == %de1% (goto :iz5)
+if %de5% == %de2% (goto :iz5)
+if %de5% == %de3% (goto :iz5)
+if %de5% == %de4% (goto :iz5)
+if %de5% == %de6% (goto :iz5)
+if %de5% == %de7% (goto :iz5)
+if %de5% == %de8% (goto :iz5)
+goto :col6
+
+:iz6
+set/a espera6=%espera6%+1
+set/a e6=%espera6%+1
+set/a de66=%random% %%8
+set/a iz66=%random% %%8
+set/a de6=%de66%+1
+set/a iz6=%iz66%+1
+
+if %e6% GEQ 6 (goto :Bucle)
+
+:col6
+echo Cargando iz6 y de6..........(intento: %intentos%)
+if %iz6% == %iz1% (goto :iz6)
+if %iz6% == %iz2% (goto :iz6)
+if %iz6% == %iz3% (goto :iz6)
+if %iz6% == %iz4% (goto :iz6)
+if %iz6% == %iz5% (goto :iz6)
+if %iz6% == %iz7% (goto :iz6)
+if %iz6% == %iz8% (goto :iz6)
+
+if %de6% == %de1% (goto :iz6)
+if %de6% == %de2% (goto :iz6)
+if %de6% == %de3% (goto :iz6)
+if %de6% == %de4% (goto :iz6)
+if %de6% == %de5% (goto :iz6)
+if %de6% == %de7% (goto :iz6)
+if %de6% == %de8% (goto :iz6)
+goto :col7
+
+:iz7
+set/a espera7=%espera7%+1
+set/a e7=%espera7%+1
+set/a de77=%random% %%8
+set/a iz77=%random% %%8
+set/a de7=%de77%+1
+set/a iz7=%iz77%+1
+if %e7% GEQ 100 (goto :Bucle)
+
+:col7
+echo Cargando iz7 y de7..........(intento: %intentos%)
+if %iz7% == %iz1% (goto :iz7)
+if %iz7% == %iz2% (goto :iz7)
+if %iz7% == %iz3% (goto :iz7)
+if %iz7% == %iz4% (goto :iz7)
+if %iz7% == %iz5% (goto :iz7)
+if %iz7% == %iz6% (goto :iz7)
+if %iz7% == %iz8% (goto :iz7)
+
+if %de7% == %de1% (goto :iz8)
+if %de7% == %de2% (goto :iz8)
+if %de7% == %de3% (goto :iz8)
+if %de7% == %de4% (goto :iz8)
+if %de7% == %de5% (goto :iz8)
+if %de7% == %de6% (goto :iz8)
+if %de7% == %de8% (goto :iz8)
+goto :col8
+
+:iz8
+set/a espera8=%espera8%+1
+set/a e8=%espera8%+1
+set/a de88=1%random% %%8
+set/a iz88=%random% %%8
+set/a de8=%de88%+1
+set/a iz8=%iz88%+1
+if %e8% GEQ 100 (goto :Bucle)
+
+:col8
+echo Cargando iz8 y de8..........(intento: %intentos%)
+if %iz8% == %iz1% (goto :iz8)
+if %iz8% == %iz2% (goto :iz8)
+if %iz8% == %iz3% (goto :iz8)
+if %iz8% == %iz4% (goto :iz8)
+if %iz8% == %iz5% (goto :iz8)
+if %iz8% == %iz6% (goto :iz8)
+if %iz8% == %iz7% (goto :iz8)
+
+if %de8% == %de1% (goto :iz8)
+if %de8% == %de2% (goto :iz8)
+if %de8% == %de3% (goto :iz8)
+if %de8% == %de4% (goto :iz8)
+if %de8% == %de5% (goto :iz8)
+if %de8% == %de6% (goto :iz8)
+if %de8% == %de7% (goto :iz8)
+
+:comprovacion
+color 7
+echo Comprovando reinas...
+timeout /t 1 /nobreak > nul
+if %reina1% == %reina2% (goto :Bucle)
+if %reina1% == %reina3% (goto :Bucle)
+if %reina1% == %reina4% (goto :Bucle)
+if %reina1% == %reina5% (goto :Bucle)
+if %reina1% == %reina6% (goto :Bucle)
+if %reina1% == %reina7% (goto :Bucle)
+if %reina1% == %reina8% (goto :Bucle)
+if %reina2% == %reina1% (goto :Bucle)
+if %reina2% == %reina3% (goto :Bucle)
+if %reina2% == %reina4% (goto :Bucle)
+if %reina2% == %reina5% (goto :Bucle)
+if %reina2% == %reina6% (goto :Bucle)
+if %reina2% == %reina7% (goto :Bucle)
+if %reina2% == %reina8% (goto :Bucle)
+if %reina3% == %reina1% (goto :Bucle)
+if %reina3% == %reina2% (goto :Bucle)
+if %reina3% == %reina4% (goto :Bucle)
+if %reina3% == %reina5% (goto :Bucle)
+if %reina3% == %reina6% (goto :Bucle)
+if %reina3% == %reina7% (goto :Bucle)
+if %reina3% == %reina8% (goto :Bucle)
+if %reina4% == %reina1% (goto :Bucle)
+if %reina4% == %reina2% (goto :Bucle)
+if %reina4% == %reina3% (goto :Bucle)
+if %reina4% == %reina5% (goto :Bucle)
+if %reina4% == %reina6% (goto :Bucle)
+if %reina4% == %reina7% (goto :Bucle)
+if %reina4% == %reina8% (goto :Bucle)
+if %reina5% == %reina1% (goto :Bucle)
+if %reina5% == %reina2% (goto :Bucle)
+if %reina5% == %reina3% (goto :Bucle)
+if %reina5% == %reina4% (goto :Bucle)
+if %reina5% == %reina6% (goto :Bucle)
+if %reina5% == %reina7% (goto :Bucle)
+if %reina5% == %reina8% (goto :Bucle)
+if %reina6% == %reina1% (goto :Bucle)
+if %reina6% == %reina2% (goto :Bucle)
+if %reina6% == %reina3% (goto :Bucle)
+if %reina6% == %reina4% (goto :Bucle)
+if %reina6% == %reina5% (goto :Bucle)
+if %reina6% == %reina7% (goto :Bucle)
+if %reina6% == %reina8% (goto :Bucle)
+if %reina7% == %reina1% (goto :Bucle)
+if %reina7% == %reina2% (goto :Bucle)
+if %reina7% == %reina3% (goto :Bucle)
+if %reina7% == %reina4% (goto :Bucle)
+if %reina7% == %reina5% (goto :Bucle)
+if %reina7% == %reina6% (goto :Bucle)
+if %reina7% == %reina8% (goto :Bucle)
+if %reina8% == %reina1% (goto :Bucle)
+if %reina8% == %reina2% (goto :Bucle)
+if %reina8% == %reina3% (goto :Bucle)
+if %reina8% == %reina4% (goto :Bucle)
+if %reina8% == %reina5% (goto :Bucle)
+if %reina8% == %reina6% (goto :Bucle)
+if %reina8% == %reina7% (goto :Bucle)
+
+:Diagonales
+color f
+echo Comprovando diagonales...
+timeout /t 1 /nobreak > nul
+
+
+
+
+
+
+
+set/a diagiz=%iz1%-%iz2%
+set/a diagde=%de1%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz3%
+set/a diagde=%de1%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz4%
+set/a diagde=%de1%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz5%
+set/a diagde=%de1%-%de5%
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz6%
+set/a diagde=%de1%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz7%
+set/a diagde=%de1%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz1%-%iz8%
+set/a diagde=%de1%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz2%-%iz1%
+set/a diagde=%de2%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz3%
+set/a diagde=%de2%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz4%
+set/a diagde=%de2%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz5%
+set/a diagde=%de2%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz6%
+set/a diagde=%de2%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz7%
+set/a diagde=%de2%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz2%-%iz8%
+set/a diagde=%de2%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz3%-%iz1%
+set/a diagde=%de3%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz2%
+set/a diagde=%de3%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz4%
+set/a diagde=%de3%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz5%
+set/a diagde=%de3%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz6%
+set/a diagde=%de3%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz7%
+set/a diagde=%de3%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz3%-%iz8%
+set/a diagde=%de3%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz4%-%iz1%
+set/a diagde=%de4%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz2%
+set/a diagde=%de4%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz3%
+set/a diagde=%de4%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz5%
+set/a diagde=%de4%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz6%
+set/a diagde=%de4%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz7%
+set/a diagde=%de4%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz4%-%iz8%
+set/a diagde=%de4%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz5%-%iz1%
+set/a diagde=%de5%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz2%
+set/a diagde=%de5%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz3%
+set/a diagde=%de5%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz4%
+set/a diagde=%de5%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz6%
+set/a diagde=%de5%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz7%
+set/a diagde=%de5%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz5%-%iz8%
+set/a diagde=%de5%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz6%-%iz1%
+set/a diagde=%de6%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz2%
+set/a diagde=%de6%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz3%
+set/a diagde=%de6%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz4%
+set/a diagde=%de6%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz5%
+set/a diagde=%de6%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz7%
+set/a diagde=%de6%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz6%-%iz8%
+set/a diagde=%de6%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz7%-%iz1%
+set/a diagde=%de7%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz2%
+set/a diagde=%de7%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz3%
+set/a diagde=%de7%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz4%
+set/a diagde=%de7%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz5%
+set/a diagde=%de7%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz6%
+set/a diagde=%de7%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz7%-%iz8%
+set/a diagde=%de7%-%de8%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+
+set/a diagiz=%iz8%-%iz1%
+set/a diagde=%de8%-%de1%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz8%-%iz2%
+set/a diagde=%de8%-%de2%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz8%-%iz3%
+set/a diagde=%de8%-%de3%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz8%-%iz4%
+set/a diagde=%de8%-%de4%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz8%-%iz5%
+set/a diagde=%de8%-%de5%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+set/a diagiz=%iz8%-%iz6%
+set/a diagde=%de8%-%de6%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+
+set/a diagiz=%iz8%-%iz7%
+set/a diagde=%de8%-%de7%
+if %diagiz% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagde% LSS 0 (set/a diagiz=%diagiz%*-1)
+if %diagiz% == %diagde% (goto :Bucle)
+
+echo Ultimas comprovaciones...
+timeout /t 1 /nobreak > nul
+if %comp% == 0 (set/a comp=%comp%+1)
+if %comp% == 1 (goto :next)
+goto :Reinas
+
+
+:next
+set/a reina1=%iz1%%de1%
+set/a reina2=%iz2%%de2%
+set/a reina3=%iz3%%de3%
+set/a reina4=%iz4%%de4%
+set/a reina5=%iz5%%de5%
+set/a reina6=%iz6%%de6%
+set/a reina7=%iz7%%de7%
+set/a reina8=%iz8%%de8%
+
+
+:mostrar
+color a
+cls
+mode 39,29
+echo.
+echo.
+echo.
+echo *     Reina 1:  %reina1%
+echo *     Reina 2:  %reina2%
+echo *     Reina 3:  %reina3%
+echo *     Reina 4:  %reina4%
+echo *     Reina 5:  %reina5%
+echo *     Reina 6:  %reina6%
+echo *     Reina 7:  %reina7%
+echo *     Reina 8:  %reina8%
+echo.
+echo    INTENTOS REALIZADOS: %intentos%
+echo.
+echo.
+
+echo ------------------------ >> logs.txt
+echo. >> logs.txt
+echo *     Reina 1:  %reina1% >> logs.txt
+echo *     Reina 2:  %reina2% >> logs.txt
+echo *     Reina 3:  %reina3% >> logs.txt
+echo *     Reina 4:  %reina4% >> logs.txt
+echo *     Reina 5:  %reina5% >> logs.txt
+echo *     Reina 6:  %reina6% >> logs.txt
+echo *     Reina 7:  %reina7% >> logs.txt
+echo *     Reina 8:  %reina8% >> logs.txt
+echo. >> logs.txt
+echo    INTENTOS REALIZADOS: %intentos% >> logs.txt
+echo. >> logs.txt
+echo ------------------------ >> logs.txt
+echo. >> logs.txt
+echo. >> logs.txt
+echo. >> logs.txt
+set/a intentos=0
+goto :Bucle
